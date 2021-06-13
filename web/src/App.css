@@ -1,6 +1,6 @@
 .App{
   background-color: #141414;
-  min-height: 100vh;
+  height: 100%;
   width: 100%;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -87,9 +87,56 @@
 
 .notFoundCountry{
   color: #5f5e5e;
+  font-size: 16px;
+}
+
+hr{
+  border-top: 1px solid #131212;
 }
 
 .light-text{
   font-weight: 300;
   color: #5f5e5e;
+}
+
+#countryDetails{
+  font-size: 20px;
+}
+
+#mapImg{
+  width: 200px;
+}
+
+@media only screen and (max-width: 1340px) {
+  .App .leftSide{
+    display: none;
+  }
+
+  .leaflet-container{
+    width: 80%;
+  }
+
+  .App .rightSide{
+    width: 100%;
+    display: inline;
+  }
+
+  #countryDetails p{
+    float:left;
+    margin-right: 20px;
+  }
+
+  #mapImg{
+    width: 100px;
+    float: left;
+    margin-right: 20px;
+  }
+
+  hr{
+    display: none;
+  }
+
+  .br{
+    display: block;
+  }
 }
