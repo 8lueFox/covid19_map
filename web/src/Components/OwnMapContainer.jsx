@@ -1,9 +1,9 @@
 import React from 'react'
 import {MapContainer, TileLayer, useMapEvent} from 'react-leaflet'
 
-const startingPosition = [51.505, -0.09]
+const startingPosition = [51.6180165487737, 18.457031250000004]
 
-export const OwnMapContainer = ({onClickFun}) => {
+export const OwnMapContainer = ({onClickFun, latlngError}) => {
 
     function SetViewOnClick(){
         const map = useMapEvent('click', (e) => {
@@ -12,6 +12,12 @@ export const OwnMapContainer = ({onClickFun}) => {
             })
             onClickFun(e.latlng)
         })
+
+        if(latlngError){
+            map.setView(startingPosition, map.getZoom(), {
+                animate: true
+            })
+        }
         return null
     }
 

@@ -4,7 +4,7 @@ import { OwnMapContainer } from './OwnMapContainer'
 import { CountryDetails } from './CountryDetails'
 import 'leaflet/dist/leaflet.css'
 
-export const CovidMapContainer = ({globalDetails, continentsDetails, getCoordsFun, countryDetails}) => {
+export const CovidMapContainer = ({globalDetails, continentsDetails, getCoordsFun, countryDetails, latlngError}) => {
     return (
         <div>
             <div className='leftSide'>
@@ -37,7 +37,7 @@ export const CovidMapContainer = ({globalDetails, continentsDetails, getCoordsFu
                 </div>
             </div>
             <div className='ma2p'>
-                <OwnMapContainer onClickFun={getCoordsFun} />
+                <OwnMapContainer onClickFun={getCoordsFun} latlngError={latlngError} />
             </div>
             <div className='rightSide'>
                 <CountryDetails details={countryDetails} />

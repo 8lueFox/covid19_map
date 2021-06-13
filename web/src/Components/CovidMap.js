@@ -10,6 +10,7 @@ export const CovidMap = () => {
     const[globalDetails, setGlobalDetails] = useState()
     const[historicalDetails, setHistoricalDetails] = useState()
     const[continentsDetails, setContinentsDetails] = useState()
+    const[latlngError, setLatlngError] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -39,11 +40,12 @@ export const CovidMap = () => {
     }, [country])
 
     useEffect(() => {
+        setLatlngError(false)
         const fetchData = async () => {
             if(latlng !== undefined){
                 await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latlng.lat}+${latlng.lng}&key=${GEO_API_KEY}&language=en`)
                     .then(resp => resp.json())
-                    .then(data => setCountry(data.results[0].components.country))
+                    .then(data => data.results.length !== 0 ? setCountry(data.results[0].components.country) : setLatlngError(true))
             }
         }
         fetchData()
@@ -54,7 +56,7 @@ export const CovidMap = () => {
     }
 
     return (
-        <CovidMapContainer globalDetails={globalDetails} continentsDetails={continentsDetails} getCoordsFun={getCoords} countryDetails={countryDetails}/>
+        <CovidMapContainer globalDetails={globalDetails} continentsDetails={continentsDetails} getCoordsFun={getCoords} countryDetails={countryDetails} latlngError={latlngError}/>
     )
 }
 
